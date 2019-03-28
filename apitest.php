@@ -1,45 +1,20 @@
 <?php
-//API URL
-$url = 'http://reqres.in/api/users';
-
-//create a new cURL resource
-$ch = curl_init($url);
-
-//setup request to send json via POST
-$data = array(
-    'name' => 'morpheus',
-    'job' => 'leader'
-);
-$payload = json_encode($data);
-
-curl_setopt($ch, CURLOPT_POST, true);
-//attach encoded JSON string to the POST fields
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-//set the content type to application/json
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-
-//return response instead of outputting
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-//execute the POST request
-$result = curl_exec($ch);
-$err = curl_error($ch);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $result;
-}
-
-echo "<pre>";
-echo var_dump($result);
-echo var_dump(json_decode($result));
-echo "</pre>";
-
-//close cURL resource
-curl_close($ch);
-
-?>
+//post
+$url="www.way2sms.com/api/v1/sendCampaign";
+$message = urlencode("Testing now way2sms");// urlencode your message
+$apikey = urlencode("KDZXLTMYOU3UYBCAFRT9N4GDUNGJP20W");
+$secretKey = urlencode("GDTSJNFDCZY20EOD");
+$useType = urlencode("stage");
+$phone = urlencode("7987142236");
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_POST, 1);// set post data to true
+curl_setopt($curl, CURLOPT_POSTFIELDS, "apikey=$apikey&secret=$secretKey&usetype=$useType&phone=$phone&message=$message");// post data
+// query parameter values must be given without squarebrackets.
+ // Optional Authentication:
+curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$result = curl_exec($curl);
+curl_close($curl);
+echo $result;
+?><?php
