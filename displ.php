@@ -26,13 +26,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="single-page contact-page">
+
 <header class="site-header">
     <div class="top-header-bar">
         <div class="container">
             <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
                 <div class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
                     <div class="header-bar-email">
-                        MAIL: <a href="#">www.thecharity@gmail.com</a>
+                        MAIL: <a href="#">wwwthecharity@gmail.com</a>
                     </div><!-- .header-bar-email -->
 
                     <div class="header-bar-text">
@@ -48,6 +49,7 @@
             </div><!-- .row -->
         </div><!-- .container -->
     </div><!-- .top-header-bar -->
+
 
     <div class="nav-bar">
         <div class="container">
@@ -84,12 +86,55 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>Enter your Data For Online Registration to Donate Blood</h1>
+                    <h1>Donar list</h1>
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->
     </div><!-- .page-header -->
+    <div >
+             <center> <b>   <table style="border: 3px solid red">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>bloodgroupe</th>
+            <th>email</th>
+            <th>address</th>
+        </tr>
+        <?php
+        $conn = mysqli_connect("localhost", "root", "", "register");
+        if ($conn-> connect_error) {
+            die("Connection failed:".$conn-> connect_error);
 
+        }
+        $sql ="SELECT id, name, bloodgroup, email, messages from registerdetails";
+        $result = $conn-> query($sql);
+        if ($result->num_rows >0) {
+            while ($row = $result-> fetch_assoc()) {
+           echo     "<tr>
+                      <td>" . $row["id"] ."</td>
+                      <td>" . $row["name"] . "</td>
+                      <td>" . $row["bloodgroup"] ."</td>
+                      <td>" . $row["email"] ."</td>
+                      <td>" . $row["messages"] ."</td>
+                 </tr>";
+            
+            }
+            echo "</table>";
+        }
+        else{
+            echo "0 result";
+        }
+        $conn-> close();
+        ?>
+    </table>
+    
+
+</b>
+</center>
+</form>
+
+  </div><!-- .col -->
+ 
     <div class="contact-page-wrap">
         <div class="container">
             <div class="row">
@@ -116,16 +161,6 @@
                     </div>
                 </div><!-- .col -->
 
-                <div class="col-12 col-lg-7">
-                    <form method="POST" action="newinsert.php">
-Name :        <input type="text" name="name" required="Enter your full name"><br><br>
-Bloodgroupe : <input type="text" name="bloodgroupe" required><br><br>
-gmail :       <input type="text" name="email" required><br><br>
-Message :     <input type="text" name="message" required><br><br>
-<input type="submit" value="Submit">
-</form>
-
-                </div><!-- .col -->
 
                 <div class="col-12">
                     <div class="contact-gmap">

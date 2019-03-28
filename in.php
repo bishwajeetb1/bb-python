@@ -15,14 +15,14 @@ if (!empty($name) || !empty($bloodgroupe) || !empty($email) || !empty($messages)
     $host = "localhost";
     $dbUsername = "root";
     $dbPassword = "";
-    $dbname = "mydata";
+    $dbname = "youtube";
     //create connection
     $conn = new mysqli($host, $dbUsername, $dbPassword, $dbname);
     if (mysqli_connect_error()) {
      die('Connect Error('. mysqli_connect_errno().')'. mysqli_connect_error());
     } else {
-     $SELECT = "SELECT email From mine Where email = ? Limit 1";
-     $INSERT = "INSERT Into mine (name, bloodgroup, email, messages) values(?, ?, ?, ?)";
+     $SELECT = "SELECT email From account Where email = ? Limit 1";
+     $INSERT = "INSERT Into account (name, bloodgroup, email, messages) values(?, ?, ?, ? )";
      //Prepare statement
      $stmt = $conn->prepare($SELECT);
      $stmt->bind_param("s", $email);

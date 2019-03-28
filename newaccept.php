@@ -9,7 +9,7 @@ $conn = mysqli_connect("localhost", "root", "", "register");
    die("Connection failed: " . $conn->connect_error);
   } 
  # $sql = "SELECT ID, FirstName, LastName FROM students";
-$stmt = $conn->prepare("insert into registerdetails (name, bloodgroup,email,messages) values (?, ?, ?, ?)");
+$stmt = $conn->prepare("insert into accept (name, bloodgroup,email,address) values (?, ?, ?, ?)");
 $stmt->bind_param("ssss", $name, $bloodgroupe, $email, $address);
 $result = $stmt->execute();
   if($result) {
